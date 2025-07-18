@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="Client Portal", layout="centered")
+st.set_page_config(page_title="clientportal", layout="centered")
 st.title("clientportal")
 
 # --- Auth check ---
