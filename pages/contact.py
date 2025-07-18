@@ -1,15 +1,9 @@
 import streamlit as st
-from streamlit.source_util import _on_pages_changed, get_pages
 
-_on_pages_changed()
-pages = get_pages("")
-
-st.write("Available pages:")
-for page in pages.values():
-    st.write(f"- {page['page_name']}")
-
+st.set_page_config(page_title="Contact", layout="centered")
 st.title("📬 Contact Us")
 
+# Dummy form (keep your original)
 with st.form("contact_form"):
     name = st.text_input("Your Name")
     email = st.text_input("Email")
@@ -19,3 +13,16 @@ with st.form("contact_form"):
 if submitted:
     st.success("✅ Thanks! We'll follow up shortly.")
 
+# --- TEMP: Show what pages are clickable
+st.subheader("Debug: Try switching pages")
+
+try:
+    # Hardcode known options or guess a few
+    possible_pages = ["Client Portal", "Clientportal", "clientportal", "New Client Registration", "Newclientregistration"]
+    page_choice = st.radio("Try switching to:", possible_pages)
+
+    if st.button("Switch to page"):
+        st.switch_page(page_choice)
+
+except Exception as e:
+    st.error(f"⚠️ switch_page failed: {e}")
