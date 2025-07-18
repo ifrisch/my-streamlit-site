@@ -54,4 +54,4 @@ if submitted:
         st.session_state.go_to_portal = True
 
         st.success("✅ Registration successful. Redirecting...")
-        st.experimental_rerun()  # 👈 now we trigger the re-run again
+        st.rerun()  # 👈 now we trigger the re-run again
