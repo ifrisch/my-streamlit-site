@@ -50,4 +50,4 @@ with st.form("registration_form"):
           
             st.success("✅ Registration successful. Redirecting to your portal...")
 
-            st.switch_page("Client Portal")
+            st.switch_page("Clientportal")
