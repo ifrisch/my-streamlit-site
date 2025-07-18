@@ -1,7 +1,9 @@
 import streamlit as st
 
+# ✅ This must be the first Streamlit call in the file
 st.set_page_config(page_title="Client Portal", layout="centered")
-st.title("clientportal")
+
+st.title("Client Portal")
 
 # --- Auth check ---
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
@@ -25,4 +27,4 @@ st.info("Your tax documents are under review. We’ll notify you once they're re
 # --- Logout Button ---
 if st.button("🚪 Logout"):
     st.session_state.clear()
-    st.experimental_rerun()
+    st.rerun()
