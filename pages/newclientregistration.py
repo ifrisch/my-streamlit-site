@@ -3,21 +3,26 @@ import pandas as pd
 import hashlib
 import os
 
-# --- Configuration ---
+# --- Config ---
 USER_DB = "user_database.csv"
 
-# --- Create empty user DB if it doesn't exist ---
+# --- Redirect if flag is set ---
+if st.session_state.get("go_to_portal"):
+    st.session_state.go_to_portal = False
+    st.switch_page("clientportal")
+
+# --- Init DB ---
 if not os.path.exists(USER_DB):
     df = pd.DataFrame(columns=["email", "name", "password_hash"])
     df.to_csv(USER_DB, index=False)
 
 users_df = pd.read_csv(USER_DB)
 
-# --- Hashing function ---
+# --- Hashing ---
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
-# --- Page UI ---
+# --- UI ---
 st.title("📝 New Client Registration")
 
 with st.form("registration_form"):
@@ -44,11 +49,7 @@ if submitted:
 
         st.session_state.logged_in = True
         st.session_state.user_email = email
+        st.session_state.go_to_portal = True
 
-        st.success("✅ Registration successful. Redirecting to your portal...")
-        st.write("🛠 Debug: Pages I see")
-        import os
-        st.write(os.listdir("pages"))
-
-        
-        st.switch_page("clientportal")
+        st.success("✅ Registration successful. Redirecting...")
+        st.experimental_rerun()
