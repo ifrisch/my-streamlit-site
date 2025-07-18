@@ -44,7 +44,9 @@ with st.form("registration_form"):
             new_row = pd.DataFrame([new_user])
             users_df = pd.concat([users_df, new_row], ignore_index=True)
             users_df.to_csv(USER_DB, index=False)
-            st.success("✅ Registration successful. Logging you in...")
+            
             st.session_state.logged_in = True
             st.session_state.user_email = email
-            st.experimental_rerun()
+          
+            st.success("✅ Registration successful. Logging you in...")
+            st.stop()  # prevent the script from continuing this round
