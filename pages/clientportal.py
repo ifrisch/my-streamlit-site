@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(page_title="Client Portal", layout="centered")
-st.title("clientportal)")
+st.title("clientportal")
 
 # --- Auth check ---
 if "logged_in" not in st.session_state or not st.session_state.logged_in:
