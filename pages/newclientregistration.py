@@ -50,3 +50,9 @@ with st.form("registration_form"):
           
             st.success("✅ Registration successful. Logging you in...")
             st.stop()  # prevent the script from continuing this round
+
+            st.markdown(
+            '<meta http-equiv="refresh" content="1; url=/ClientPortal">',
+            unsafe_allow_html=True
+        )
+            st.stop()
