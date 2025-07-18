@@ -1,40 +1,30 @@
 import streamlit as st
 
-# --- USER DATABASE (TEMPORARY IN-CODE) ---
-users = {
-    "client1@example.com": "password123",
-    "client2@example.com": "abc456"
-}
+# Set sidebar label and browser title
+st.set_page_config(page_title="Client Portal", layout="centered")
+st.title("Client Portal")
 
-# --- LOGIN FORM ---
-st.title("🔐 Client Portal Login")
+# --- Authentication Check ---
+if "logged_in" not in st.session_state or not st.session_state.logged_in:
+    st.warning("🚫 You must be logged in to access the portal.")
+    st.stop()
 
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
+# --- Welcome Message ---
+st.success(f"✅ Welcome, {st.session_state.user_email}!")
 
-if not st.session_state.logged_in:
-    with st.form("login_form"):
-        email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
-        submitted = st.form_submit_button("Login")
+# --- Upload Section ---
+st.subheader("📁 Upload Documents")
 
-        if submitted:
-            if email in users and users[email] == password:
-                st.session_state.logged_in = True
-                st.session_state.user_email = email
-                st.success("✅ Login successful")
-                st.experimental_rerun()
-            else:
-                st.error("❌ Incorrect email or password")
-else:
-    st.success(f"Welcome, {st.session_state.user_email}!")
-    
-    # --- Secure Client Area Below ---
-    st.subheader("📁 Your Documents")
-    st.write("⬇️ Download, upload, or view your current tax documents.")
+uploaded_file = st.file_uploader("Upload a file", type=["pdf", "docx", "xlsx"])
+if uploaded_file:
+    st.success(f"✅ File '{uploaded_file.name}' uploaded successfully.")
+    # NOTE: This only stores it in memory for now. You can add saving logic later.
 
-    uploaded_file = st.file_uploader("Upload a file", type=["pdf", "docx", "xlsx"])
-    if uploaded_file:
-        st.success("✅ File uploaded!")
+# --- Status or Notes Section ---
+st.subheader("📝 Current Status")
+st.info("Your latest tax return is in progress. We'll notify you when it's ready!")
 
-    st.button("🚪 Logout", on_click=lambda: st.session_state.clear())
+# --- Logout Button ---
+if st.button("🚪 Logout"):
+    st.session_state.clear()
+    st.experimental_rerun()
