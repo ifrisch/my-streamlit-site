@@ -48,11 +48,6 @@ with st.form("registration_form"):
             st.session_state.logged_in = True
             st.session_state.user_email = email
           
-            st.success("✅ Registration successful. Logging you in...")
-            st.stop()  # prevent the script from continuing this round
+            st.success("✅ Registration successful. Redirecting to your portal...")
 
-            st.markdown(
-                '<meta http-equiv="refresh" content="1; url=/ClientPortal">',
-                unsafe_allow_html=True
-            )
-            st.stop()
+            st.switch_page("pages/0_ClientPortal.py")
