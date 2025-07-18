@@ -46,4 +46,9 @@ if submitted:
         st.session_state.user_email = email
 
         st.success("✅ Registration successful. Redirecting to your portal...")
+        st.write("🛠 Debug: Pages I see")
+        import os
+        st.write(os.listdir("pages"))
+
+        
         st.switch_page("clientportal")
