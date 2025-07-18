@@ -1,0 +1,15 @@
+[[pages]]
+path = "pages/about.py"
+name = "About"
+
+[[pages]]
+path = "pages/contact.py"
+name = "Contact"
+
+[[pages]]
+path = "pages/newclientregistration.py"
+name = "New Client Registration"
+
+[[pages]]
+path = "pages/clientportal.py"
+name = "Client Portal"
