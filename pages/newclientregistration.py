@@ -41,7 +41,8 @@ with st.form("registration_form"):
                 "name": name,
                 "password_hash": hash_password(password)
             }
-            users_df = users_df.append(new_user, ignore_index=True)
+            new_row = pd.DataFrame([new_user])
+            users_df = pd.concat([users_df, new_row], ignore_index=True)
             users_df.to_csv(USER_DB, index=False)
             st.success("✅ Registration successful. You can now log in.")
             st.session_state.logged_in = True
