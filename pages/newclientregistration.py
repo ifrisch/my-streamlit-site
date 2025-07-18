@@ -9,7 +9,7 @@ USER_DB = "user_database.csv"
 # --- Redirect if flag is set ---
 if st.session_state.get("go_to_portal"):
     st.session_state.go_to_portal = False
-    st.markdown("[✅ Click here to go to your portal](?clientportal)")
+    st.switch_page("Portal")
 
 # --- Init DB ---
 if not os.path.exists(USER_DB):
