@@ -46,4 +46,4 @@ if submitted:
         st.session_state.user_email = email
 
         st.success("✅ Registration successful. Redirecting to your portal...")
-        st.switch_page("Client Portal")
+        st.switch_page("clientportal")
